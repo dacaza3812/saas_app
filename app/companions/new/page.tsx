@@ -1,5 +1,4 @@
 import CompanionForm from '@/components/CompanionForm'
-import React from 'react'
 
 const NewCompanion = () => {
   return (
