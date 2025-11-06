@@ -28,6 +28,7 @@ import { subjects } from "@/constants"
 import { Textarea } from "./ui/textarea"
 import { createCompanion } from "@/lib/actions/companion.action"
 import { redirect } from "next/navigation"
+import type { Resolver } from "react-hook-form"
 
 const formSchema = z.object({
   name: z.string().min(1, { error: "Companion is required" }),
@@ -40,7 +41,7 @@ const formSchema = z.object({
 
 const CompanionForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(formSchema) as Resolver<z.infer<typeof formSchema>>,
     defaultValues: {
       name: "",
       subject: "",
