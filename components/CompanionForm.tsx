@@ -29,6 +29,8 @@ import { Textarea } from "./ui/textarea"
 import { createCompanion } from "@/lib/actions/companion.action"
 import { redirect } from "next/navigation"
 import type { Resolver } from "react-hook-form"
+import { useState } from "react"
+import { set } from "zod/v4"
 
 const formSchema = z.object({
     name: z.string().min(1, { message: 'Companion is required.'}),
@@ -40,6 +42,7 @@ const formSchema = z.object({
 })
 
 const CompanionForm = () => {
+  const [loading, setLoading] =  useState(false)
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema) as Resolver<z.infer<typeof formSchema>>,
     defaultValues: {
@@ -54,6 +57,7 @@ const CompanionForm = () => {
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    setLoading(true)
     const companion = await createCompanion(values)
 
     if(companion){
@@ -206,7 +210,7 @@ const CompanionForm = () => {
           )}
         />
 
-        <Button type="submit" className="w-full cursor-pointer">Build Your Companion</Button>
+        <Button disabled={loading} type="submit" className="w-full cursor-pointer">Build Your Companion</Button>
       </form>
     </Form>
   )

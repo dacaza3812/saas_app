@@ -1,49 +1,39 @@
 import CompanionCard from '@/components/CompanionCard'
 import CompanionList from '@/components/CompanionList'
 import Cta from '@/components/CTA'
-import { Button } from '@/components/ui/button'
 import { recentSessions } from '@/constants'
+import { getAllCompanions, getRecentSessions } from '@/lib/actions/companion.action'
+import { getSubjectColor } from '@/lib/utils'
 import React from 'react'
 
-const Page = () => {
+const Page = async () => {
+  const companions = await getAllCompanions({ limit: 3 });
+  const recentSessionsCompanions = await getRecentSessions(10)
+
   return (
     <main>
 
       <h1>Popular Companion</h1>
 
       <section className='home-section'>
-        <CompanionCard 
-          id="1"
-          name="Neura the Brainy Explorer"
-          topic="Neural Network of the Brain"
-          subject="Science"
-          duration={45}
-          color="#ffda6e"
-        />
 
-        <CompanionCard 
-          id="2"
-          name="Neura the Brainy Explorer"
-          topic="Neural Network of the Brain"
-          subject="Maths"
-          duration={45}
-          color="#e5d0ff"
-        />
+        {
+          companions?.map((companion) => (
+            <CompanionCard
+              key={companion.id}
+              {...companion}
+              color={getSubjectColor(companion.subject)}
+            />
+          ))
+        }
 
-        <CompanionCard 
-          id="3"
-          name="Neura the Brainy Explorer"
-          topic="Neural Network of the Brain"
-          subject="Enginiering"
-          duration={45}
-          color="#bde7ff"
-        />
+
       </section>
 
       <section className='home-section'>
         <CompanionList
           title="Recently completed sessions"
-          companions={recentSessions}
+          companions={recentSessionsCompanions}
           classnames="w-2/3 max-lg:w-full"
         />
         <Cta />
