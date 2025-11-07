@@ -54,7 +54,9 @@ export const getSubjectColor = (subject: string) => {
          },
        ],
      },
+     //@ts-ignore
      clientMessages: [],
+     //@ts-ignore
      serverMessages: [],
    };
    return vapiAssistant;
