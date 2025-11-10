@@ -1,38 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Companion Builder
 
-## Getting Started
+Companion Builder is a modern SaaS web application that enables users to create topic‑specific AI companions. Users can choose a theme and interact with the companion through voice‑powered chat. The system integrates authentication, billing, real‑time data, and observability to deliver a secure, scalable, and enhanced user experience.
 
-First, run the development server:
+## ✨ Features
+
+* **Next.js App Router** for a performant full‑stack experience
+* **Clerk Authentication** (Sign‑in/Sign‑up/Session management)
+* **Clerk Billing** for subscription management
+* **Supabase** for database and storage
+* **ShadCN/UI** for component styling
+* **VAPI AI** for voice + text models
+* **Sentry** for full error logging and monitoring
+* **Fully typed application with TypeScript**
+
+## 🧠 How It Works
+
+1. Users authenticate via Clerk.
+2. Authenticated users can create or select a Companion theme.
+3. A voice‑enabled assistant (VAPI AI) interacts with the user to build and refine the companion.
+4. Core application data is persisted in Supabase.
+5. Billing is handled via Clerk Billing.
+6. All system errors and edge cases are reported to Sentry.
+
+## 🏗 Tech Stack
+
+* **Framework:** Next.js
+* **Auth + Billing:** Clerk + Clerk Billing
+* **Database:** Supabase
+* **UI:** ShadCN/UI
+* **AI Runtime:** VAPI AI (voice + text)
+* **Monitoring:** Sentry
+* **Language:** TypeScript
+
+## 🔐 Required Environment Variables
+
+The following environment variables must be set for the app to function correctly:
 
 ```bash
+# Clerk
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=
+NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=
+NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=
+
+# Supabase
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+
+# VAPI
+NEXT_PUBLIC_VAPI_WEB_TOKEN=
+
+# Sentry
+SENTRY_AUTH_TOKEN=
+```
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone <repo-url>
+cd companion-builder
+```
+
+### 2. Install Dependencies
+
+```bash
+pnpm install
+# or
+npm install
+# or
+yarn install
+```
+
+### 3. Configure Environment Variables
+
+Create `.env.local` and add the values above.
+
+### 4. Run the Development Server
+
+```bash
+pnpm dev
+# or
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the app at: [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✅ Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm build
+pnpm start
+```
 
-## Learn More
+## 📦 Deployment
 
-To learn more about Next.js, take a look at the following resources:
+Companion Builder can be deployed on:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* Vercel (recommended)
+* Any Next.js‑compatible hosting provider
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Ensure all required environment variables are configured in your hosting provider.
 
-## Deploy on Vercel
+## 📊 Error Tracking
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Sentry is used to track runtime and build‑time errors across environments.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📝 License
 
-3:46
+Proprietary — All rights reserved.
+
+---
+
+Created with ❤️ for AI‑driven companion building.
